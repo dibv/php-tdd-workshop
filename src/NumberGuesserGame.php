@@ -4,15 +4,30 @@ declare(strict_types=1);
 
 namespace Kata;
 
-final class NumberGuesserGame
+use Random\RandomException;
+
+class NumberGuesserGame
 {
-    public function guessIsCorrect(int $number): bool
+    private int $attempts;
+
+
+    /**
+     * @throws RandomException
+     */
+    public function randomNumberGenerator(): int
     {
-        if ($number === 5) {
+        return random_int(0, 9);
+    }
+
+    public function guessIsCorrect(int $userNumber, $randomGeneratedNumber): bool
+    {
+        //$this->attempts++;
+
+        if ($userNumber === $randomGeneratedNumber) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
 
     }
 }
